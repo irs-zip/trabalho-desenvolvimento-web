@@ -6,8 +6,8 @@ O objetivo do projeto é desenvolver um sistema web simples integrando frontend,
 
 ## 🛠️ Tecnologias Utilizadas
 
-* **Frontend:** HTML5, CSS3, Bootstrap e JavaScript (Validações e Fetch API/AJAX).
-* **Backend:** PHP puro (com controle de sessão e hash de senhas `password_hash`).
+* **Frontend:** HTML5, CSS3, Bootstrap e JavaScript (Validações e Fetch AJAX).
+* **Backend:** PHP puro (com controle de sessão e hash de senhas).
 * **Banco de Dados:** PostgreSQL com comunicação via PDO.
 
 ## 🚀 Como subir o sistema localmente
@@ -18,7 +18,7 @@ Para rodar este projeto na sua máquina, você precisará de um servidor web loc
 Abra o terminal ou prompt de comando na pasta pública do seu servidor web (ex: pasta `htdocs` no XAMPP ou `www` no WAMP) e execute o comando abaixo:
 
 ```bash
-git clone [https://github.com/irs-zip/trabalho-desenvolvimento-web.git](https://github.com/irs-zip/trabalho-desenvolvimento-web.git)
+git clone https://github.com/irs-zip/trabalho-desenvolvimento-web.git
 ```
 
 ### 2. Configurar o Banco de Dados
@@ -35,3 +35,44 @@ Com o servidor Apache/PHP rodando, abra o seu navegador e acesse a URL:
 ```text
 http://localhost/trabalho-desenvolvimento-web/index.html
 ```
+
+---
+
+## 👨‍💻 Fluxo de Trabalho do Grupo (Como contribuir)
+
+Para mantermos o código organizado, cada membro deverá puxar sua tarefa no Trello, criar uma branch separada para trabalhar e depois juntar ao projeto. Como o repositório é livre de bloqueios, não precisaremos de aprovação formal para os Pull Requests.
+
+Siga o passo a passo abaixo para cada tarefa:
+
+### Passo 1: Atualizar o seu repositório local
+Antes de começar qualquer tarefa, garanta que você tem a versão mais recente do código:
+```bash
+git checkout main
+git pull origin main
+```
+
+### Passo 2: Criar a sua Branch de Trabalho
+Crie uma branch com um nome que lembre a tarefa que você pegou no Trello (ex: `tela-de-login`, `script-banco`, `php-cadastro`):
+```bash
+git checkout -b nome-da-sua-tarefa
+```
+
+### Passo 3: Programar
+Abra o projeto no VSCode, edite os arquivos correspondentes à sua atividade e salve. 
+
+### Passo 4: Salvar e Subir as Alterações
+Quando terminar, abra o terminal do VSCode e rode os comandos para empacotar e enviar o código:
+```bash
+git add .
+git commit -m "Descrição clara do que você fez (ex: Criação do HTML da tela de login)"
+git push origin nome-da-sua-tarefa
+```
+
+### Passo 5: Juntar com o código principal (Merge)
+Como não temos regras de aprovação:
+1. Acesse a página do repositório no GitHub.
+2. Você verá um aviso verde dizendo **"Compare & pull request"**. Clique nele.
+3. Clique em **"Create pull request"**.
+4. Em seguida, clique direto no botão verde **"Merge pull request"** e depois em **"Confirm merge"**.
+
+Pronto! Seu código agora faz parte da `main` e o próximo integrante já pode dar `git pull` para baixar suas alterações.
