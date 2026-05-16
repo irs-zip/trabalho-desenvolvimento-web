@@ -1,30 +1,37 @@
-# 💻 Sistema Web de Integração - Controle de Chamados
+# 💻 Sistema de Controle de Chamados
 
-Este repositório contém o projeto prático da disciplina de **Desenvolvimento Web em HTML5, CSS, JavaScript e PHP**. O objetivo do sistema é integrar frontend, backend e banco de dados, permitindo o cadastro de usuários, autenticação e a gestão de chamados de suporte.
+Este repositório contém o trabalho prático acadêmico da disciplina de **Desenvolvimento Web em HTML5, CSS, JavaScript e PHP**. 
 
-trabalho-desenvolvimento-web/
-│
-├── css/                   
-│   └── style.css          # Arquivo para o CSS personalizado de vocês
-│
-├── js/                    
-│   ├── validacoes.js      # JS apenas para as validações de tela (CPF, E-mail)
-│   └── ajax.js            # JS dedicado apenas para as requisições ao banco
-│
-├── php/                   
-│   ├── conexao.php        # Arquivo focado apenas na conexão PDO com o PostgreSQL
-│   ├── login_action.php   # Arquivo que recebe o POST do login
-│   ├── cadastro_action.php# Arquivo que recebe o POST do cadastro
-│   └── chamados_action.php# Arquivo que vai lidar com o CRUD de chamados
-│
-├── sql/                   
-│   └── criacao_banco.sql  # Aqui vai o script CREATE TABLE do banco
-│
-├── docs/                  
-│   └── .gitkeep           # Pasta para guardar prints, o DER e o Word final
-│
-├── index.html             # Tela inicial (Escolha Login/Cadastro)
-├── login.html             # Tela do formulário de Login
-├── cadastro.html          # Tela do formulário de Cadastro
-├── painel.php             # Área logada do usuário (aqui tem que ser .php por causa da sessão)
-└── README.md              # Aquele arquivo de apresentação que criamos
+O objetivo do projeto é desenvolver um sistema web simples integrando frontend, backend e banco de dados, focado na autenticação de usuários e na gestão de chamados de suporte.
+
+## 🛠️ Tecnologias Utilizadas
+
+* **Frontend:** HTML5, CSS3, Bootstrap e JavaScript (Validações e Fetch API/AJAX).
+* **Backend:** PHP puro (com controle de sessão e hash de senhas `password_hash`).
+* **Banco de Dados:** PostgreSQL com comunicação via PDO.
+
+## 🚀 Como subir o sistema localmente
+
+Para rodar este projeto na sua máquina, você precisará de um servidor web local configurado para rodar PHP (como XAMPP, WAMP ou Laragon) e o PostgreSQL instalado.
+
+### 1. Clonar o repositório
+Abra o terminal ou prompt de comando na pasta pública do seu servidor web (ex: pasta `htdocs` no XAMPP ou `www` no WAMP) e execute o comando abaixo:
+
+```bash
+git clone [https://github.com/irs-zip/trabalho-desenvolvimento-web.git](https://github.com/irs-zip/trabalho-desenvolvimento-web.git)
+```
+
+### 2. Configurar o Banco de Dados
+1. Abra o seu gerenciador do PostgreSQL (ex: pgAdmin ou DBeaver).
+2. Crie um novo banco de dados.
+3. Execute o script SQL contido no arquivo `sql/criacao_banco.sql` para criar as tabelas `usuarios` e `chamados`.
+
+### 3. Configurar a Conexão
+Abra o arquivo `php/conexao.php` no seu editor de código e altere as credenciais (nome do banco, usuário e senha) de acordo com o seu PostgreSQL local.
+
+### 4. Acessar o sistema
+Com o servidor Apache/PHP rodando, abra o seu navegador e acesse a URL:
+
+```text
+http://localhost/trabalho-desenvolvimento-web/index.html
+```
