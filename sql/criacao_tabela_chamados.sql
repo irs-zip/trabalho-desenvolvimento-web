@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS chamados (
-    id INT AUTO_INCREMENT,
+    id SERIAL,
     user_id INT,
     titulo VARCHAR(155),
     descricao VARCHAR(155),
