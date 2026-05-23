@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS chamados (
     responsavel VARCHAR(100),
     regiao VARCHAR(60),
     status VARCHAR(15),
-    data TIMESTAMP,
+    data TIMESTAMP DEFAULT NOW(), --Inclui a data e hora atual por padrão
     PRIMARY KEY (id),
     CONSTRAINT fk_chamado_usuario FOREIGN KEY (user_id) REFERENCES usuarios (id)
 );
