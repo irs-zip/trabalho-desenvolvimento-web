@@ -1,0 +1,34 @@
+name: Criar Tabelas no Banco de Dados
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "sql/**"
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repositório
+        uses: actions/checkout@v4
+
+      - name: Criar tabela usuarios
+        env:
+          PGHOST: ${{ secrets.DB_HOST }}
+          PGPORT: ${{ secrets.DB_PORT }}
+          PGUSER: ${{ secrets.DB_USER }}
+          PGPASSWORD: ${{ secrets.DB_PASS }}
+          PGDATABASE: ${{ secrets.DB_NAME }}
+        run: psql -f sql/criacao_tabela_usuario.sql
+
+      - name: Criar tabela chamados
+        env:
+          PGHOST: ${{ secrets.DB_HOST }}
+          PGPORT: ${{ secrets.DB_PORT }}
+          PGUSER: ${{ secrets.DB_USER }}
+          PGPASSWORD: ${{ secrets.DB_PASS }}
+          PGDATABASE: ${{ secrets.DB_NAME }}
+        run: psql -f sql/criacao_tabela_chamados.sql
