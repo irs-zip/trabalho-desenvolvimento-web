@@ -21,7 +21,9 @@
      border-radius: 10px;
      margin-top: 100px;
  }
- placeholder {
-     color: #94a3b8;
-     style: italic;
+ .teste{
+        background-color: #334155;
+        padding: 30px;
+        border-radius: 10px;
+        margin-top: 100px;
  }
