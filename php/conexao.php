@@ -1,10 +1,11 @@
 <?php
 // Configurações do banco de dados PostgreSQL
-$host = 'localhost';
-$port = '5432';               // Porta padrão do PostgreSQL
-$dbname = 'sistema_chamados'; // Nome do banco que criamos no pgAdmin
-$user = 'postgres';           // Usuário do PostgreSQL
-$password = '7911';           // A sua senha local
+// No Docker, o host é o nome do container "db" (definido no docker-compose.yml)
+$host = 'db';
+$port = '5432';
+$dbname = 'sistema_chamados';
+$user =  'postgres';
+$password =  '7911';
 
 try {
     // Montando a string de conexão (DSN) específica para PostgreSQL

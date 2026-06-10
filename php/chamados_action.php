@@ -38,7 +38,7 @@ try {
     // ==========================================
     elseif ($acao === 'listar') {
         // Busca os chamados do banco e formata a data para o padrão Brasileiro
-        $sql = "SELECT id, titulo, departamento, status, TO_CHAR(data_hora, 'DD/MM/YYYY HH24:MI') as data_formatada 
+        $sql = "SELECT id, titulo, departamento, status, TO_CHAR(data_hora AT TIME ZONE 'UTC' AT TIME ZONE 'America/Sao_Paulo', 'DD/MM/YYYY HH24:MI') as data_formatada 
                 FROM chamados WHERE usuario_id = ? ORDER BY id DESC";
         
         $stmt = $pdo->prepare($sql);
@@ -46,6 +46,21 @@ try {
         $chamados = $stmt->fetchAll();
         
         echo json_encode(['sucesso' => true, 'chamados' => $chamados]);
+    }
+    // ==========================================
+    // 3. EDITAR CHAMADO
+    // ==========================================
+    elseif ($acao === 'editar') {
+        $id = $_POST['id'] ?? 0;
+        $novoStatus = $_POST['status'] ?? '';
+        $complemento = $_POST['descricao'] ?? '';
+
+        $sql = "UPDATE chamados SET status = ?, descricao = ?, data_hora = NOW()
+                WHERE id = ? AND usuario_id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$novoStatus, $complemento, $id, $usuario_id]);
+
+        echo json_encode(['sucesso' => true, 'mensagem' => 'Chamado atualizado com sucesso!']);
     }
 } catch (PDOException $e) {
     // Se o banco de dados chiar, o PHP avisa o JavaScript

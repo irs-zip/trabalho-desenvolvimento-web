@@ -47,6 +47,7 @@ if (!isset($_SESSION['usuario_id'])) {
             <strong>Telefone:</strong> <br>
             <span id="display-telefone" class="text-muted">Carregando...</span>
         </p>
+        <button type="button" class="btn btn-sm btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">Editar</button>
     </div>
 </div>
 
@@ -75,8 +76,7 @@ if (!isset($_SESSION['usuario_id'])) {
     <textarea name="descricao" id="chamado-descricao" class="form-control mb-2" placeholder="Descrição" required></textarea>
     
     <button type="submit" class="btn btn-primary w-100">Registrar</button>
-</form>
-                        </form>
+</form> 
                     </div>
                 </div>
             </div>
@@ -111,6 +111,18 @@ if (!isset($_SESSION['usuario_id'])) {
             </form>
         </div></div></div>
     </div>
+    
+    <div class="modal fade" id="modalEditarPerfil" tabindex="-1">
+        <div class="modal-dialog"><div class="modal-content"><div class="modal-body">
+            <h5 class="mb-3">Editar Meus Dados</h5>
+            <form id="form-editar-perfil">
+                <input type="text" id="edit-perfil-nome" class="form-control mb-2" placeholder="Nome">
+                <input type="text" id="edit-perfil-telefone" class="form-control mb-2" placeholder="Telefone">
+                <button type="submit" class="btn btn-primary mt-2 w-100">Salvar</button>
+            </form>
+        </div></div></div>
+    </div>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../js/ajax.js"></script>

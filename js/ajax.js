@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <td>${c.departamento}</td>
                                     <td><span class="badge ${corBadge}">${c.status}</span></td>
                                     <td>${c.data_formatada}</td>
-                                    <td><button class="btn btn-sm btn-outline-primary btn-editar" data-id="${c.id}" data-bs-toggle="modal" data-bs-target="#modalEditarChamado">Editar</button></td>
+                                    <td><button class="btn btn-sm btn-outline-primary btn-editar" data-id="${c.id}" data-titulo="${c.titulo}" data-status="${c.status}" data-departamento="${c.departamento}" data-bs-toggle="modal" data-bs-target="#modalEditarChamado">Editar</button></td>
                                 </tr>
                             `;
                         });
@@ -98,6 +98,63 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Dispara a função assim que o JS perceber que está no painel
         carregarDadosIniciais();
+
+        // Quando clicar em "Editar" no card Meus Dados, preenche o modal
+        const btnEditarPerfil = document.querySelector('[data-bs-target="#modalEditarPerfil"]');
+        if (btnEditarPerfil) {
+            btnEditarPerfil.addEventListener("click", function() {
+                document.getElementById("edit-perfil-nome").value = document.getElementById("display-nome").innerText;
+                document.getElementById("edit-perfil-telefone").value = document.getElementById("display-telefone").innerText;
+            });
+        }
+
+        // Submit do formulário de edição do perfil
+        const formEditarPerfil = document.getElementById("form-editar-perfil");
+        if (formEditarPerfil) {
+            formEditarPerfil.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const formData = new FormData();
+                formData.append('acao', 'atualizar');
+                formData.append('nome', document.getElementById("edit-perfil-nome").value);
+                formData.append('telefone', document.getElementById("edit-perfil-telefone").value);
+
+                fetch("../php/perfil_action.php", { method: "POST", body: formData })
+                    .then(res => res.json())
+                    .then(data => {
+                        alert(data.mensagem);
+                        carregarDadosIniciais(); // Atualiza os dados na tela
+                    });
+            });
+        }
+
+        // Quando clicar no botão "Editar" do Chamado, preenche o modal com os dados do chamado
+        document.addEventListener("click", function(e) {
+            if (e.target.classList.contains("btn-editar")) {
+                document.getElementById("edit-id-chamado").value = e.target.dataset.id;
+                document.getElementById("edit-status").value = e.target.dataset.status;
+                document.getElementById("edit-descricao").value = "";
+            }
+        });
+
+        // Submit do formulário de edição (Salvar no modal)
+        const formEditar = document.getElementById("form-editar-chamado");
+        if (formEditar) {
+            formEditar.addEventListener("submit", function(e) {
+                e.preventDefault();
+                const formData = new FormData();
+                formData.append('acao', 'editar');
+                formData.append('id', document.getElementById("edit-id-chamado").value);
+                formData.append('status', document.getElementById("edit-status").value);
+                formData.append('descricao', document.getElementById("edit-descricao").value);
+
+                fetch("../php/chamados_action.php", { method: "POST", body: formData })
+                    .then(res => res.json())
+                    .then(data => {
+                        alert(data.mensagem);
+                        carregarDadosIniciais(); // Atualiza a tabela
+                    });
+            });
+        }
 
         // Submit de Novo Chamado (Esse formulário ainda existe, então mantemos)
         const formAbrirChamado = document.getElementById("form-abrir-chamado");
